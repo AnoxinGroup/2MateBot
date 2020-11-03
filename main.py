@@ -1,7 +1,7 @@
 
-from Mate.main import ZMateBot
-from Mate.meta import BaseMeta
-from Mate.core.bot import Bot
+from mate.main import ZMateBot
+from mate.meta.base import BaseMeta
+from mate.core.bot import Bot
 
 
 Bot.run(

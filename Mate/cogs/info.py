@@ -1,9 +1,8 @@
 
-from Mate.commands import Commands
-
-from Mate.core.cog import Cog
+from mate.core.cog import Cog
+from mate.commands.info import bot
 
 
 class Info(Cog):
 
-    botinfo = Commands.BOT
+    info_bot = bot

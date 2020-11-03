@@ -2,20 +2,24 @@
 
 ## About
 > **2Mate** is a bot specially created for
-> Dusework's Discord server, but anyway
+> Anoxin's Official Discord server, but anyway
 > it can be used within other Discord
 > servers.
 
 ## Requirements
-> This project requires Python 3.6 and above, first
+> This project requires Python 3.6 or above, first
 ```ini
-Python==3.6
+Python>=3.6
 ```
 
 > Some of these helpful libraries for Python
 ```ini
 enums==0.0.2
 discord.py==1.4.1
+pynacl==1.4.0
+youtube-dl==2020.11.1.1
+youtube-search=1.1.1
+pafy==0.5.5
 ```
 
 ## License
