@@ -12,13 +12,11 @@ class Cog(_Cog):
         as_error_string = str(
             error)
 
-        normal_error_string = as_error_string.split(":")[-1]
-
         await ctx.send(
             embed=error_embed(
                 ctx.cog.qualified_name,
                 ctx.command,
-                normal_error_string)
+                as_error_string)
         )
 
 
