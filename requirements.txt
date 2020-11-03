@@ -3,5 +3,5 @@ enums==0.0.2
 discord.py==1.4.1
 pynacl==1.4.0
 youtube-dl==2020.11.1.1
-youtube-search=1.1.1
+youtube-search==1.1.1
 pafy==0.5.5
