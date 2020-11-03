@@ -28,4 +28,4 @@ async def search_and_play(ctx, voice_client, url):
         raise Exception("Unable to find the video by this name")
 
     await play_youtube_audio(
-        ctx, voice_client, video_found.url)
+        ctx, voice_client, video_found.id)

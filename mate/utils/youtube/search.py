@@ -16,11 +16,7 @@ class YoutubeSearchData(object):
     """
 
     def __init__(self, **kwargs):
-        self._url_suffix = kwargs.pop("url_suffix", "")
-
-    @property
-    def url(self):
-        return urljoin(YT_FULLNAME, self._url_suffix)
+        self.id = kwargs.pop("id", "")
 
 
 def search_videos(name, videos=10):
