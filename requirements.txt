@@ -5,4 +5,4 @@ pynacl==1.4.0
 youtube-dl==2020.11.1.1
 youtube-search==1.1.1
 pafy==0.5.5
-ffmpeg
+ffmpeg==0.2.0
