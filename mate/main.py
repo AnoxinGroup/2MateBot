@@ -11,6 +11,8 @@ class ZMateBot(Bot):
     def __init__(self, *args, **kwargs):
         super(ZMateBot, self).__init__(*args, **kwargs, case_insensitive=True)
 
+        self.remove_command("help")
+
         self.add_cog(Cogs.INFO)
         self.add_cog(Cogs.AUDIO)
 

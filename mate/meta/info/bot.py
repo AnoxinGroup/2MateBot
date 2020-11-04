@@ -4,7 +4,7 @@ class BotInfoMeta:
 
     EMBED_DESC = """
 
-    <:2mate:773599716729683999>**Mate** is a
+    <:2mate:773599716729683999>**Mate** is a \
     bot specially designed for the Anoxin's
     Official Discord server, but anyway it
     can be used within other Discord server as well.
@@ -13,7 +13,7 @@ class BotInfoMeta:
     everyone can take apart in bot developing and
     suggest their great ideas.
 
-    <:icons8:773607117302661133> All icons (except the
+    <:icons8:773607117302661133> All icons (except the \
     bot avatar and icon image) provided by the Icons8
     website, so we pass the link to their website due
     to terms of use.
