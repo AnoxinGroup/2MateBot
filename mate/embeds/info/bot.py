@@ -10,3 +10,6 @@ class BotInfoEmbed(Embed):
             title=BotInfoMeta.EMBED_TITLE,
             color=BotInfoMeta.EMBED_COLOR,
             description=BotInfoMeta.EMBED_DESC)
+
+        self.set_thumbnail(
+            url=BotInfoMeta.EMBED_THUMBNAIL)

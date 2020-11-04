@@ -1,13 +1,20 @@
 
 from .url import get_stream_url
 from .search import search_video
+from .reaction import react_on_play
 from .data import load_youtube_data
 from .embed import youtube_play_embed
 from mate.utils.audio import play_audio
 
 
 async def play_youtube_audio(ctx, voice_client, url, show_embed=True):
-    video_data = load_youtube_data(url)
+
+    video_data = await load_youtube_data(url)
+
+    if not video_data:
+        raise Exception("Unable to load audio...")
+
+    await react_on_play(ctx.message)
 
     if show_embed:
         await youtube_play_embed(
@@ -18,7 +25,7 @@ async def play_youtube_audio(ctx, voice_client, url, show_embed=True):
             video_data.viewcount)
 
     play_audio(
-        voice_client, get_stream_url(voice_client.channel.bitrate, video_data))
+        voice_client, get_stream_url(video_data))
 
 
 async def search_and_play(ctx, voice_client, url):

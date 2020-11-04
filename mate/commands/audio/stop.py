@@ -4,7 +4,7 @@ from mate.utils.audio import stop_audio
 from mate.utils.voice import get_voice_client
 
 
-@command(aliases=["Stop", "St"])
+@command(aliases=["st"])
 async def stop(cog, ctx):
     voice_client = get_voice_client(
         ctx.bot.voice_clients, ctx.guild)

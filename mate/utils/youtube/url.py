@@ -20,7 +20,7 @@ def get_stream_by_bitrate(streams, bitrate):
             return stream
 
 
-def get_stream_url(bitrate, video_data):
+def get_stream_url(video_data):
     stream = video_data.getbest()
 
     if not stream:

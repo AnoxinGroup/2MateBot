@@ -2,7 +2,8 @@
 import pafy
 
 
-def load_youtube_data(url):
+async def load_youtube_data(url, retry=5):
+    failed = 0
     successfully_load = False
 
     #
@@ -13,7 +14,9 @@ def load_youtube_data(url):
         try:
             loaded_content = pafy.new(url)
         except Exception:
-            pass
+            if failed > retry:
+                return
+            failed += 1
         else:
             successfully_load = True
 
