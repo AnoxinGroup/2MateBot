@@ -22,7 +22,7 @@ class BotInfoMeta:
 
     EMBED_TITLE = "About"
 
-    EMBED_COLOR = 0x00ff00
+    EMBED_COLOR = 0x43b581
 
     EMBED_THUMBNAIL = "https://cdn.discordapp.com/app-icons/" + \
         "705380653855932416/761155d9b1d6ddd104fe0ce82465bda0.png?size=64"
