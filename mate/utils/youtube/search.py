@@ -19,7 +19,7 @@ class YoutubeSearchData(object):
         self.id = kwargs.pop("id", "")
 
 
-def search_videos(name, videos=10):
+def search_videos(name, videos):
     return [
         YoutubeSearchData(**video) for video in YoutubeSearch(
             name, max_results=videos).videos

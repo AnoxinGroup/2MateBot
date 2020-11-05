@@ -1,8 +1,10 @@
 
-from .bot import BotInfoMeta
+from .bot import BotTextMeta
 from .help import BotHelpMeta
+from .info import BotInfoMeta
 
 __all__ = (
-    "BotInfoMeta",
-    "BotHelpMeta"
+    "BotTextMeta",
+    "BotHelpMeta",
+    "BotInfoMeta"
 )

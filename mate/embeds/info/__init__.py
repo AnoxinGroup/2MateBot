@@ -1,8 +1,10 @@
 
-from .bot import BotInfoEmbed
+from .bot import BotTextEmbed
 from .help import BotHelpEmbed
+from .info import BotInfoEmbed
 
 __all__ = (
-    "BotInfoEmbed",
-    "BotHelpEmbed"
+    "BotTextEmbed",
+    "BotHelpEmbed",
+    "BotInfoEmbed"
 )

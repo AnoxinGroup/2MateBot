@@ -14,10 +14,5 @@ class BotHelpEmbed(Embed):
         self.set_thumbnail(
             url=BotHelpMeta.EMBED_THUMBNAIL)
 
-        self.add_field(
-            name=BotHelpMeta.EMBED_AUDIO_NAME,
-            value=BotHelpMeta.EMBED_AUDIO_VALUE)
-
-        self.add_field(
-            name=BotHelpMeta.EMBED_INFO_NAME,
-            value=BotHelpMeta.EMBED_INFO_VALUE)
+        self.set_footer(
+            text=BotHelpMeta.EMBED_FOOTER_NAME)

@@ -2,7 +2,7 @@
 
 class YoutubePlayMeta:
 
-    COLOR = 0xfa0000
+    COLOR = 0x43b581
 
     VIEWS_FIELD_NAME = ":eye: Views"
 

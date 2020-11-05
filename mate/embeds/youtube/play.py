@@ -25,7 +25,7 @@ class YoutubePlayEmbed(Embed):
             name=YoutubePlayMeta.VIEWS_FIELD_NAME,
             value=video_views_count)
 
-        self.set_image(
+        self.set_thumbnail(
             url=video_thumb)
 
         self.set_author(
