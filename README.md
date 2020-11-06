@@ -1,5 +1,7 @@
 # 2MateBot
 
+<img align="right" height="96" src="https://github.com/AnoxinGroup/2MateBot/blob/master/assets/images/bot/avatar.png"/>
+
 ## About
 > **2Mate** is a bot specially created for
 > Anoxin's Official Discord server, but anyway
