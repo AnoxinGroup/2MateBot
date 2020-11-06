@@ -2,9 +2,6 @@
 import pyradios
 
 
-radio_browser = pyradios.RadioBrowser()
-
-
 class RadioSearchData(object):
 
     def __init__(self, **kwargs):
@@ -16,6 +13,8 @@ class RadioSearchData(object):
 
 
 def search_radios(name, limit):
+    radio_browser = pyradios.RadioBrowser()
+
     return [
         RadioSearchData(**data) for data in radio_browser.search(
             name=name, limit=limit, name_exact=True)

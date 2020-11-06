@@ -1,8 +1,10 @@
 
-from .meta import (
-    YT_NETLOC1, YT_NETLOC2)
-from discord.utils import get
 from urllib.parse import urlparse
+from mate.meta.youtube import YoutubeUrls
+
+
+YT_NETLOC1 = YoutubeUrls.YT_NETLOC1
+YT_NETLOC2 = YoutubeUrls.YT_NETLOC2
 
 
 def is_youtube_link(url) -> bool:
@@ -12,12 +14,6 @@ def is_youtube_link(url) -> bool:
         return True
     else:
         return False
-
-
-def get_stream_by_bitrate(streams, bitrate):
-    for stream in streams:
-        if stream.rawbitrate < bitrate:
-            return stream
 
 
 def get_stream_url(video_data):

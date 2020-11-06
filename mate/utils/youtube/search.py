@@ -1,6 +1,4 @@
 
-from .meta import YT_FULLNAME
-from urllib.parse import urljoin
 from youtube_search import YoutubeSearch
 
 

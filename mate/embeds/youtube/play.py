@@ -17,17 +17,9 @@ class YoutubePlayEmbed(Embed):
             color=YoutubePlayMeta.COLOR
         )
 
-        self.add_field(
-            name=YoutubePlayMeta.AUTHOR_FIELD_NAME,
-            value=video_author)
-
-        self.add_field(
-            name=YoutubePlayMeta.VIEWS_FIELD_NAME,
-            value=video_views_count)
-
         self.set_thumbnail(
             url=video_thumb)
 
-        self.set_author(
-            name="Youtube",
-            icon_url=YoutubePlayMeta.EMBED_AUTHOR_IMAGE)
+        self.set_footer(
+            text=YoutubePlayMeta.EMBED_FOOTER_TEXT,
+            icon_url=YoutubePlayMeta.EMBED_FOOTER_IMAGE)
