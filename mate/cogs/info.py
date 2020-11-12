@@ -1,10 +1,10 @@
 
-from mate.core.cog import Cog
-from mate.commands.info import bot, help, info
+from discord.ext.commands import Cog, command
 
 
 class Info(Cog):
 
-    help = help
-    info = info
-    info_bot = bot
+    # @command(aliases=["b", "mate"])
+    # async def bot(cog, ctx):
+    #     await ctx.send(embed=BotTextEmbed())
+    pass

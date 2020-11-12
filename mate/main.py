@@ -1,9 +1,9 @@
 
-from mate.cogs import Cogs
-from mate.core.bot import Bot
-from mate.meta.bot import BotMeta
 from discord import Activity, ActivityType
-from mate.utils.presence import change_presence
+from discord.ext.commands import Bot
+
+from mate.cogs.info import Info
+from mate.cogs.audio import Audio
 
 
 class ZMateBot(Bot):
@@ -13,10 +13,12 @@ class ZMateBot(Bot):
 
         self.remove_command("help")
 
-        self.add_cog(Cogs.INFO)
-        self.add_cog(Cogs.AUDIO)
+        self.add_cog(Info())
+        self.add_cog(Audio(self))
 
     async def on_ready(self):
-        await change_presence(
-            self, Activity(
-                type=ActivityType.watching, name=BotMeta.ACTIVITY_NAME))
+        await self.change_presence(
+            activity=Activity(
+                type=ActivityType.watching,
+                name="2Help | 2Mate")
+        )

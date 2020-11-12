@@ -1,11 +1,10 @@
 
+from os import environ
 from mate.main import ZMateBot
-from mate.meta.base import BaseMeta
-from mate.core.bot import Bot
 
 
-Bot.run(
+ZMateBot.run(
     ZMateBot(
-        command_prefix=BaseMeta.PREFIX),
-    BaseMeta.TOKEN
+        command_prefix="2"),
+    environ.get("M2TOKEN")
 )
