@@ -52,7 +52,6 @@ queue and play them.
 """
 
 from sys import platform
-from asyncio import run
 from functools import partial
 from discord import FFmpegPCMAudio
 
@@ -181,6 +180,9 @@ def remove_audio_queue(guild_for) -> int:
 
 
 def audio_switcher(asked, voice_client, audio, audio_queue, *args):
+
+    run = voice_client.loop.run_until_complete
+
     run(
         exhaust_audio(asked, voice_client, audio))
 
