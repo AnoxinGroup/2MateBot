@@ -1,11 +1,22 @@
 
+
+#  ___ _____ _____ ____  _____ _____     _____ _____ _____
+# |_  |  _  |  |  |    \|     |     |___|     |     |   __|
+# |  _|     |  |  |  |  |-   -|  |  |___|   --|  |  |  |  |
+# |___|__|__|_____|____/|_____|_____|   |_____|_____|_____|
+# 2AUDIO COMMAND COG
+#
+
+#
+# TODO
+# 1. Add exceptions
+
 from discord.ext.commands import Cog, command
 
-from mate.utils.url import is_url
 from mate.utils.radio import search_radio
 from mate.utils.voice import get_voice_client, get_certain_vcli
 from mate.embeds.audio import AudioQueueEmbed
-from mate.utils.autoplay import play_certain_audio
+from mate.utils.autoplay import auto_play
 
 from mate.utils.audio import (
     play_audio,
@@ -16,14 +27,11 @@ from mate.utils.audio import (
     remove_audio_queue,
     play_next_audio, play_previos_audio)
 
-from mate.utils.youtube import (
-    is_youtube_link, search_youtube, get_youtube)
-
 
 class Audio(Cog):
 
     def __init__(self, bot):
-        self.bot = bot
+        self.bot = bot  # This cog requires the bot reference
 
     # @command(aliases=["aud"])
     # async def audio(self, ctx):
@@ -36,7 +44,7 @@ class Audio(Cog):
     #         embed=AudioInfoEmbed())
 
     @command(aliases=["pl"])
-    async def play(self, ctx, *, url_or_name=""):
+    async def play(self, ctx, *, query=""):
         """
 
         Searches and plays an audio fragment by the given
@@ -59,7 +67,7 @@ class Audio(Cog):
         # RESUME BLOCK
         audio_queue = get_audio_queue(guild_for=ctx.guild)
 
-        if not url_or_name:
+        if not query:
             if not audio_queue.is_empty():
                 return await play_audio_queue(
                     ctx, voice_client, audio_queue)
@@ -68,7 +76,7 @@ class Audio(Cog):
 
         #
         # AUDIO PLAY BLOCK
-        await play_certain_audio(ctx, voice_client, url_or_name)
+        await auto_play(ctx, voice_client, query)
 
     @command(aliases=["st"])
     async def stop(self, ctx):
@@ -83,14 +91,27 @@ class Audio(Cog):
         if not voice_client:
             return
 
-        audio_queue = get_audio_queue(guild_for=ctx.guild)
-
         if not voice_client.is_playing():
             return
 
-        await stop_audio_queue(ctx.author, voice_client, audio_queue)
+        await stop_audio(ctx.author, voice_client)
 
         await ctx.message.add_reaction("🛑")
+
+    @command(aliases=["j", "jmp"])
+    async def jump(self, ctx, pos: int):
+        voice_client = await get_voice_client(ctx)
+
+        #
+        # JUMP BLOCK
+        audio_queue = get_audio_queue(guild_for=ctx.guild)
+
+        if audio_queue.is_empty():
+            return
+
+        audio_queue.jump(pos)
+
+        await play_audio_queue(ctx, voice_client, audio_queue)
 
     @command(aliases=["nx"])
     async def next(self, ctx):
@@ -173,13 +194,20 @@ class Audio(Cog):
             ...
 
         """
+        voice_client = await get_voice_client(ctx)
 
-        await ctx.message.add_reaction("🔄")
+        if voice_client.is_playing():
+            voice_client.stop()
 
         audio_queue = get_audio_queue(
             guild_for=ctx.guild)
 
+        if audio_queue.is_empty():
+            return
+
         audio_queue.reset()
+
+        await ctx.message.add_reaction("🔄")
 
     @command(aliases=["lv"])
     async def leave(self, ctx):
@@ -217,9 +245,16 @@ class Audio(Cog):
 
     @Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+
+        #
+        # in this case we can not use the `get_voice_client` function
+        # because we have no avaible context, so `get_certain_vcli` used
+        # instead, as requires only list of voice clients and guild.
         voice_client = get_certain_vcli(self.bot.voice_clients, member.guild)
 
         if not voice_client:
+            #
+            # skip this when the voice client do not exists.
             return
 
         audio_queue = get_audio_queue(guild_for=member.guild)

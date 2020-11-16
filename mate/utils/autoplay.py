@@ -5,7 +5,7 @@ from mate.utils.youtube import (
     play_youtube, search_play_youtube)
 
 
-async def play_certain_audio(ctx, voice_client, query):
+async def auto_play(ctx, voice_client, query):
 
     if is_url(query):
         if is_youtube_link(query):

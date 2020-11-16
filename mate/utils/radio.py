@@ -17,7 +17,7 @@ class RadioData(AudioData):
         self._browser = RadioBrowser()
 
         self._radio_data = self._browser.search(
-            name, limit=1, name_exact=False)
+            name=name, limit=1, name_exact=False)
 
     @property
     def url(self):

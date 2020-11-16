@@ -6,6 +6,10 @@
 # 2AUDIO Utility Module
 #
 
+#
+# TODO
+# 1. Add an audio start timestamp
+
 """Audio Utilities
 
 2ABOUT
@@ -27,7 +31,7 @@ That's example how to play audio stream directly.
 
     # pass the URL link, that refer
     # to the direct audio stream
-    audio = Audio("...")
+    audio = AudioData("...")
 
     await play_audio(ctx, voice_client, audio)
 
@@ -41,8 +45,8 @@ queue and play them.
     # get an audio queue for the certain guild
     audio_queue = get_audio_queue(guild_for=ctx.guild)
 
-    audio1 = Audio("...")
-    audio2 = Audio("...")
+    audio1 = AudioData("...")
+    audio2 = AudioData("...")
 
     audio_queue.add(audio1)
     audio_queue.add(audio2)
@@ -68,7 +72,8 @@ class AudioData:
     def source(self):
         """
 
-        Returns a specific audio source.
+        Returns a specific audio source to play
+        by voice clien's method `play`.
 
         """
         return
@@ -124,6 +129,12 @@ class AudioQueue:
 
     def previos(self):
         self.index -= 1
+
+    def jump(self, to):
+        self.index = to
+
+    def jump_aud(self, audio):
+        self.jump(self._audios.index(audio))
 
     def add(self, audio_data: AudioData):
         self._audios.append(audio_data)
@@ -283,4 +294,6 @@ async def play_certain_audio(
     audio_queue.add(audio_data)
 
     if not voice_client.is_playing():
+        audio_queue.jump_aud(audio_data)
+
         await play_audio_queue(ctx, voice_client, audio_queue)
